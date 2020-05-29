@@ -74,10 +74,13 @@ cont.matrix <- makeContrasts(ControlvsDay1=GC-G1,
 #contrast groups must be separated by "-", whereas the name for the contrasts can be given in front of the = 
 fit2 <- contrasts.fit(fit, cont.matrix)
 fit2 <- eBayes(fit2)
-tT <- topTable(fit2, coef=2, adjust="BH", number=20)
-##the coefficient specifies which comparison you want to look at. Coef=1 refers to "ControlvsDay1", because it is the first contrast
 
-
-##To get the FULL table of DEGs and a summary of which are up/down reg:
+##To get a FULL table of DEGs and a summary of which are up/down reg:
 complete_list <- topTable(fit2, coef=NULL, adjust="BH", number=Inf)
+  ##the coefficient specifies which comparison you want to look at. Coef=1 refers to "ControlvsDay1", because it is the first contrast
+  ##A null coefficient will list all of the contrasts identified 
 summary(decideTests(fit2))
+
+
+
+
